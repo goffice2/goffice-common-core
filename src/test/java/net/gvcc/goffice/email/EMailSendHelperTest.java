@@ -77,18 +77,19 @@ public class EMailSendHelperTest {
 
 	// ========================================================================================//
 
+	final String from = "goffice20@gvcc.net";
+	final String subject = "Ti arriva una mail test";
+	final String body = "Scemo chi legge";
+
+	String[] mailTo = new String[] { "goffice20@gvcc.net" };
+	String[] mailToCC = new String[] { "goffice20@gvcc.net" };
+	String[] mailToBCC = new String[] { "goffice20@gvcc.net" };
+
 	@Test
 	public void sendEMailTest() {
 		LOGGER.info("sendEMailTest - START");
 
-		final String from = "simon.nogler@gvcc.net";
-		final String subject = "Ti arriva una mail test";
-		final String body = "Scemo chi legge";
-
 		try {
-			String[] mailTo = new String[] { "simon.nogler@gmail.com", "walter.zoeggeler@gvcc.net" };
-			String[] mailToCC = new String[] { "renzo.poli@gvcc.net" };
-			String[] mailToBCC = new String[] { "sara.tumiati@gvcc.net" };
 
 			LOGGER.info("sendEMailTest - mailTo:...........{}", StringUtils.join(mailTo, ","));
 			LOGGER.info("sendEMailTest - mailToCC:.........{}", StringUtils.join(mailToCC, ","));
@@ -118,13 +119,7 @@ public class EMailSendHelperTest {
 	public void sendVerySimpleEMailTest() {
 		LOGGER.info("sendVerySimpleEMailTest - START");
 
-		final String from = "simon.nogler@gvcc.net";
-		final String subject = "Ti arriva una mail test";
-		final String body = "Scemo chi legge";
-
 		try {
-			String[] mailTo = new String[] { "simon.nogler@gmail.com", "walter.zoeggeler@gvcc.net" };
-			String[] mailToCC = new String[] { "renzo.poli@gvcc.net" };
 
 			LOGGER.info("sendVerySimpleEMailTest - mailTo:....{}", StringUtils.join(mailTo));
 			LOGGER.info("sendVerySimpleEMailTest - mailToCC:..{}", StringUtils.join(mailToCC));
