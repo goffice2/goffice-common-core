@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<layout class="net.gvcc.goffice.logger.GOfficeJsonLayout">
+				<!-- allowed values: true/false/auth-only -->
+				<!-- default value: auth-only -->
+				<!-- <includeUserAccount>false</includeUserAccount> -->
+				<!-- <includeUserRoles>false</includeUserRoles> -->
+				<!-- <includeUserRealm>false</includeUserRealm> -->
+				<!-- <includeUserEmail>false</includeUserEmail> -->
+				<includeUserClaims>false</includeUserClaims>
+
+				<timestampFormat>yyyy-MM-dd'T'HH:mm:ss.SSSX</timestampFormat>
+				<timestampFormatTimezoneId>Etc/UTC</timestampFormatTimezoneId>
+				<jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+					<prettyPrint>false</prettyPrint>
+				</jsonFormatter>
+				<appendLineSeparator>true</appendLineSeparator> <!-- don't forget line break -->
+			</layout>
+		</encoder>
+	</appender>
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>${LOG_DIR:-log}/goffice-common-core.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 50MB -->
+				<maxFileSize>50MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<charset>UTF-8</charset>
+			<layout class="ch.qos.logback.classic.PatternLayout">
+				<!-- Strangely, Logback lacks a built-in formatter for ISO 8601. So, roll our own. -->
+				<Pattern>%date{"yyyy-MM-dd'T'HH:mm:ss,SSSXXX", UTC} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+			</layout>
+		</encoder>
+	</appender>
+	<appender name="FILE_STEP_MANAGER" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- daily rollover -->
+			<fileNamePattern>${LOG_DIR:-log}/goffice-common-core.%d{yyyy-MM-dd}.%i-SM.log</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<!-- or whenever the file size reaches 50MB -->
+				<maxFileSize>50MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<!-- keep 30 days' worth of history -->
+			<maxHistory>30</maxHistory>
+		</rollingPolicy>
+		<encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+			<charset>UTF-8</charset>
+			<layout class="ch.qos.logback.classic.PatternLayout">
+				<!-- Strangely, Logback lacks a built-in formatter for ISO 8601. So, roll our own. -->
+				<Pattern>%date{"yyyy-MM-dd'T'HH:mm:ss,SSSXXX", UTC} [%thread] %-5level %logger{36} - %msg%n</Pattern>
+			</layout>
+		</encoder>
+	</appender>
+	<logger name="org.apache.http" additivity="false" level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</logger>
+	<logger name="net.gvcc.goffice.step.StepLogger" additivity="true" level="INFO">
+		<appender-ref ref="FILE_STEP_MANAGER" />
+	</logger>
+	<logger name="net.gvcc" additivity="false" level="DEBUG">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</logger>
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>

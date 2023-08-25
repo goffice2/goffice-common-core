@@ -1,0 +1,132 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>net.gvcc.goffice</groupId>
+		<artifactId>goffice-base-project</artifactId>
+		<version>2.0.21</version>
+	</parent>
+	<groupId>net.gvcc.goffice.common</groupId>
+	<artifactId>goffice-common-core</artifactId>
+	<version>2.2.0</version>
+	<name>goffice2 generic core libraries</name>
+	<properties>
+		<scm.group>${scm.group.base}/common</scm.group>
+	</properties>
+	<scm>
+		<connection>${scm.connection}</connection>
+		<developerConnection>${scm.developer.connection}</developerConnection>
+	  <tag>goffice-common-core-2.2.0</tag>
+  </scm>
+	<dependencies>
+		<dependency>
+			<groupId>net.gvcc.goffice.common</groupId>
+			<artifactId>goffice-common-project-config</artifactId>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>net.gvcc.goffice.common</groupId>-->
+<!--			<artifactId>goffice-common-logging</artifactId>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+		</dependency>
+		<!--		<dependency>-->
+		<!--			<groupId>org.slf4j</groupId>-->
+		<!--			<artifactId>slf4j-api</artifactId>-->
+		<!--		</dependency>-->
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>annotations</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.modelmapper</groupId>
+			<artifactId>modelmapper</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>3.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>jakarta.mail</artifactId>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.icegreen/greenmail -->
+		<dependency>
+			<groupId>com.icegreen</groupId>
+			<artifactId>greenmail</artifactId>
+			<version>1.6.14</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<build>
+		<plugins>
+			<!--			<plugin>-->
+			<!--				<artifactId>maven-compiler-plugin</artifactId>-->
+			<!--				<executions>-->
+			<!--					<execution>-->
+			<!--						<id>jdk8-compile</id>-->
+			<!--						<phase>compile</phase>-->
+			<!--						<goals>-->
+			<!--							<goal>compile</goal>-->
+			<!--						</goals>-->
+			<!--						<configuration>-->
+			<!--							<verbose>true</verbose>-->
+			<!--							<source>1.8</source>-->
+			<!--							<target>1.8</target>-->
+			<!--							<fork>true</fork>-->
+			<!-- JDK_8_EXECUTABLE: property da configurare: come -DJDK_8_EXECUTABLE nella build oppure, meglio ancora, nel file settings.xml -->
+			<!--							<executable>${JDK_8_EXECUTABLE}</executable>-->
+			<!--							<outputDirectory>${project.build.outputDirectory}_jdk8</outputDirectory>-->
+			<!--						</configuration>-->
+			<!--					</execution>-->
+			<!--				</executions>-->
+			<!--			</plugin>-->
+			<!--			<plugin>-->
+			<!--				<groupId>org.apache.maven.plugins</groupId>-->
+			<!--				<artifactId>maven-jar-plugin</artifactId>-->
+			<!--				<executions>-->
+			<!--					<execution>-->
+			<!--						<id>jar-jdk8</id>-->
+			<!--						<goals>-->
+			<!--							<goal>jar</goal>-->
+			<!--						</goals>-->
+			<!--						<configuration>-->
+			<!--							<classifier>jdk8</classifier>-->
+			<!--							<classesDirectory>${project.build.outputDirectory}_jdk8</classesDirectory>-->
+			<!--						</configuration>-->
+			<!--					</execution>-->
+			<!--				</executions>-->
+			<!--			</plugin>-->
+		</plugins>
+	</build>
+</project>
